@@ -1,0 +1,16 @@
+# Local scripts with credentials
+submit_task.sh
+test_loop.sh
+run_task.sh
+*.sh
+
+# Artifacts
+*.tar.gz
+artifact-*/
+output.*
+*.glb
+*.obj
+
+# Temp files
+/tmp/
+*.log
