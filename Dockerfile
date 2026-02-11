@@ -42,8 +42,8 @@ RUN pip3 install --no-cache-dir \
     accelerate \
     huggingface-hub
 
-# Skip flash-attn to save disk space (TRELLIS.2 falls back to native attention)
-# RUN pip3 install --no-cache-dir flash-attn --no-build-isolation
+# V100 (SM 7.0) doesn't support flash-attn (requires SM 8.0+)
+# Use PyTorch native SDPA instead (no extra install needed)
 
 # Install nvdiffrast (v0.4.0) with explicit CUDA arch list
 ENV TORCH_CUDA_ARCH_LIST="7.0;8.0;8.6"
@@ -77,6 +77,9 @@ ENV TORCH_CUDA_ARCH_LIST=""
 
 WORKDIR /app
 RUN mkdir -p /opt/artifact
+
+# V100 doesn't support flash-attn; use PyTorch native SDPA
+ENV ATTN_BACKEND=sdpa
 
 COPY generate.py /app/generate.py
 ENTRYPOINT ["python3", "/app/generate.py"]
