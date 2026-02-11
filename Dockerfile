@@ -40,7 +40,9 @@ RUN pip3 install --no-cache-dir \
     transformers \
     diffusers \
     accelerate \
-    huggingface-hub
+    huggingface-hub \
+    kornia \
+    timm
 
 # V100 (SM 7.0) doesn't support flash-attn (requires SM 8.0+)
 # Use PyTorch native SDPA instead (no extra install needed)
