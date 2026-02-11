@@ -121,10 +121,7 @@ def main():
             print(f"✓ Using cached model at {model_path}")
         
         print("Loading pipeline...")
-        pipeline = Trellis2ImageTo3DPipeline.from_pretrained(
-            model_path,
-            token=hf_token
-        )
+        pipeline = Trellis2ImageTo3DPipeline.from_pretrained(model_path)
         print("✓ Pipeline loaded")
         
         print("Moving to CUDA...")
